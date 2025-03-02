@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
-
-import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:hookah/auth/auth_provider/auth_provider.dart';
 import 'package:hookah/auth/auth_screen.dart';
-import 'package:qr_flutter/qr_flutter.dart';
-import 'package:mobile_scanner/mobile_scanner.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MyApp());
+  runApp(
+      MultiProvider(
+          providers: [
+            ChangeNotifierProvider(create: (_) => AuthProvider()),
+          ],
+          child: MyApp(),
+      )
+  );
 }
 
 class MyApp extends StatelessWidget {
