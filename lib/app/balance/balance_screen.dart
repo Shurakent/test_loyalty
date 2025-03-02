@@ -13,17 +13,17 @@ class BalanceScreen extends StatelessWidget {
   Widget build(BuildContext context) {
 
 
-//     final user = _auth.currentUser;
-//     if (user == null) {
-//       return Center(child: Text('Пользователь не аутентифицирован'));
-//     }
-
+     final user = _auth.currentUser;
+     if (user == null) {
+       return Center(child: Text('Пользователь не аутентифицирован'));
+     }
+    print(user);
     return Scaffold(
       appBar: AppBar(title: Text('Управление балансом')),
       body: StreamBuilder<DocumentSnapshot>(
         stream: FirebaseFirestore.instance
-            .collection(AppConfig.usersCollection)
-            .doc()
+            .collection('users')
+            .doc(user.uid)
             .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -33,7 +33,7 @@ class BalanceScreen extends StatelessWidget {
           } else if (!snapshot.hasData || !snapshot.data!.exists) {
             return Center(child: Text('Документ не найден'));
           } else {
-            final balance = snapshot.data![AppConfig.userBalanceField] ?? 0;
+            final balance = snapshot.data!['balance'] ?? 0;
             return Center(
               child: Text('Текущий баланс: $balance'),
             );
