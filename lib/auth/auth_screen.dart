@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:hookah/app/home/home_screen.dart';
-import 'package:hookah/app/navigation.dart';
+import 'package:hookah/app/qr/qr_widget.dart';
+import 'package:hookah/app/home_screen.dart';
 
 class AuthScreen extends StatelessWidget {
   final TextEditingController _emailController = TextEditingController();
@@ -34,7 +34,7 @@ class AuthScreen extends StatelessWidget {
                       email: email,
                       password: password,
                     );
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Navigation()));
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeScreen()));
                   } catch (e) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(content: Text('Ошибка входа: $e')),

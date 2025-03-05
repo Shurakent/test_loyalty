@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:hookah/auth/auth_provider/auth_provider.dart';
 
-class ProfileScreen extends StatelessWidget{
+import '../../auth/auth_screen.dart';
+
+class ProfileWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
     final user = authProvider.user;
 
-    if (user == null){
-      return Center(child: Text('Пользователь не авторизован.'));
+    if(user == null) {
+      return Center(child: Text("Пользователя нет."));
     }
-
     return Scaffold(
       appBar: AppBar(title: Text("Профиль"),),
       body: Center(
@@ -23,11 +24,14 @@ class ProfileScreen extends StatelessWidget{
             ElevatedButton(
                 onPressed: () async {
                   await authProvider.signOut();
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (context) => AuthScreen()),
+                          (Route<dynamic> route) => false);
                 },
                 child: Text('Выйти'))
           ],
         ),),
     );
   }
-  
 }

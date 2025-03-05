@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:hookah/app/navigation.dart';
+import 'package:hookah/app/home_screen.dart';
 import 'package:hookah/auth/auth_provider/auth_provider.dart';
 import 'package:hookah/auth/auth_screen.dart';
 import 'package:provider/provider.dart';
-
-import 'app/home/home_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,12 +34,10 @@ class AuthWrapper extends StatelessWidget {
     final authProvider = Provider.of<AuthProvider>(context);
     final user = authProvider.user;
 
-    // Если пользователь авторизован, показываем главный экран
     if (user != null) {
-      return Navigation();
+      return HomeScreen();
     }
 
-    // Если пользователь не авторизован, показываем экран авторизации
     return AuthScreen();
   }
 }

@@ -1,19 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hookah/app_config.dart';
-
 import '../utils/firestore_util.dart';
+import 'package:provider/provider.dart';
+import 'package:hookah/auth/auth_provider/auth_provider.dart';
 
-class BalanceScreen extends StatelessWidget {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-
-
+class BalanceWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
-
-     final user = _auth.currentUser;
+    final authProvider = Provider.of<AuthProvider>(context);
+    final user = authProvider.user;
      if (user == null) {
        return Center(child: Text('Пользователь не аутентифицирован'));
      }
