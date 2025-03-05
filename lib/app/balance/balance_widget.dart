@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:hookah/app_config.dart';
-import '../utils/firestore_util.dart';
 import 'package:provider/provider.dart';
 import 'package:hookah/auth/auth_provider/auth_provider.dart';
 

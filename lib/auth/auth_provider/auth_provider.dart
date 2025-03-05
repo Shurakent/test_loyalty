@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:hookah/app_config.dart';
 
 //TODO: переместить работу с Firestore в отдельный класс(?), использщоваьт кэширование
 
@@ -28,11 +29,11 @@ class AuthProvider with ChangeNotifier {
 
   Future<void> _loadUserName(String userId) async {
     final doc = await _firestore
-        .collection('users')
+        .collection(AppConfig.usersCollection)
         .doc(userId)
         .get();
     if (doc.exists) {
-      _name = doc['name'] as String?;
+      _name = doc[AppConfig.userNameField] as String?;
       notifyListeners();
     }
   }
