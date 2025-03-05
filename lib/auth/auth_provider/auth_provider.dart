@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:hookah/app_config.dart';
 
-//TODO: переместить работу с Firestore в отдельный класс(?), использщоваьт кэширование
+//TODO: переместить работу с Firestore в отдельный класс(?), использовать кэширование
 
 class AuthProvider with ChangeNotifier {
   final FirebaseAuth _auth = FirebaseAuth.instance;
