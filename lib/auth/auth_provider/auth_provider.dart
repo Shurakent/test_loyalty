@@ -38,7 +38,8 @@ class AuthProvider with ChangeNotifier {
     }
   }
 
-  Future<void> signOut() async {
+  Future<void> signOut(context) async {
+    Navigator.pushReplacementNamed(context, '/auth');
     await _auth.signOut();
   }
 }

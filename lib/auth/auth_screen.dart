@@ -21,7 +21,7 @@ class AuthScreen extends StatelessWidget {
                   decoration: InputDecoration(labelText: 'Email')),
               TextField(
                   controller: _passwordController,
-                  decoration: InputDecoration(labelText: 'Password'),
+                  decoration: InputDecoration(labelText: 'Пароль'),
                   obscureText: true),
               SizedBox(height: 20),
               ElevatedButton(
@@ -33,14 +33,14 @@ class AuthScreen extends StatelessWidget {
                       email: email,
                       password: password,
                     );
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeScreen()));
+                    Navigator.pushReplacementNamed(context, '/home');
                   } catch (e) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(content: Text('Ошибка входа: $e')),
                     );
                   }
                 },
-                child: Text('Login'),
+                child: Text('Вход'),
               )
             ],
           ),

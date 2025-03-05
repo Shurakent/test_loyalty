@@ -5,8 +5,6 @@ import 'package:hookah/auth/auth_provider/auth_provider.dart';
 import 'package:hookah/auth/auth_screen.dart';
 import 'package:provider/provider.dart';
 
-//TODO: поставить переключение экранов на Navigator с route (?)
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -25,7 +23,28 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: AuthWrapper(),
+      initialRoute: '/',
+      onGenerateRoute: (settings) {
+        final authProvider = Provider.of<AuthProvider>(context, listen: false);
+        final user = authProvider.user;
+
+        switch(settings.name){
+          case '/':
+            if (user != null){
+              return MaterialPageRoute(builder: (context) => HomeScreen());
+            }
+            return MaterialPageRoute(builder: (context) => AuthScreen());
+          case '/auth':
+            return PageRouteBuilder(
+            pageBuilder: (context, animation1, animation2) => AuthScreen(),
+            transitionDuration: Duration.zero
+            );
+          case '/home':
+            return MaterialPageRoute(builder: (context) => HomeScreen());
+          default:
+            return MaterialPageRoute(builder: (context) => AuthScreen());
+        }
+      },
     );
   }
 }

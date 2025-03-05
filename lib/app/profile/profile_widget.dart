@@ -24,11 +24,7 @@ class ProfileWidget extends StatelessWidget {
             SizedBox(height: 20,),
             ElevatedButton(
                 onPressed: () async {
-                  await authProvider.signOut();
-                  Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(builder: (context) => AuthScreen()),
-                          (Route<dynamic> route) => false);
+                  await authProvider.signOut(context);
                 },
                 child: Text('Выйти'))
           ],
