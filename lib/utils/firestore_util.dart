@@ -26,9 +26,13 @@ class FirestoreUtil {
         _balance = doc[field];
         return _balance;
       }
-      else return null;
+      else {
+        return null;
+      }
     }
-    else return null;
+    else {
+      return null;
+    }
   }
 
 }

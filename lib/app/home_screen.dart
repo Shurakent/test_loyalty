@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:hookah/app/balance/balance_widget.dart';
-import 'package:hookah/app/profile/profile_widget.dart';
-import 'package:hookah/app/qr/qr_widget.dart';
+import 'package:hookah/app/widgets/balance_widget.dart';
+import 'package:hookah/app/widgets/profile_widget.dart';
+import 'package:hookah/app/widgets/qr_widget.dart';
 
 
 class HomeScreen extends StatefulWidget {
-  final Key? key;
-  HomeScreen({this.key}) : super(key: key);
+
+  const HomeScreen({super.key});
 
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  HomeScreenState createState() => HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
 
   final List<Widget> _screens = [

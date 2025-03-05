@@ -1,11 +1,13 @@
 
 // Пример экранов
 import 'package:flutter/material.dart';
-import 'package:hookah/auth/auth_provider/auth_provider.dart';
+import 'package:hookah/utils/auth_provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:provider/provider.dart';
 
 class QrWidget extends StatelessWidget {
+  const QrWidget({super.key});
+
   @override
   Widget build(BuildContext context) {
 

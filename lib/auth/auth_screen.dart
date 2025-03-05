@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthScreen extends StatelessWidget {
+  AuthScreen({super.key});
+
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -32,11 +34,15 @@ class AuthScreen extends StatelessWidget {
                       email: email,
                       password: password,
                     );
-                    Navigator.pushReplacementNamed(context, '/home');
+                    if (context.mounted) {
+                      Navigator.pushReplacementNamed(context, '/home');
+                    }
                   } catch (e) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Ошибка входа: $e')),
-                    );
+                    if (context.mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('Ошибка входа: $e')),
+                      );
+                    }
                   }
                 },
                 child: Text('Вход'),

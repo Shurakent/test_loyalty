@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:hookah/auth/auth_provider/auth_provider.dart';
+import 'package:hookah/utils/auth_provider.dart';
 
 class ProfileWidget extends StatelessWidget {
+  const ProfileWidget({super.key});
   @override
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
