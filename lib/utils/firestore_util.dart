@@ -1,38 +1,25 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 
-class FirestoreUtil {
+import '../app_config.dart';
 
-  final FirebaseFirestore _firestore;
-  final FirebaseAuth _auth;
-  String collection;
-  String field;
-  double _balance = -1;
+class FirestoreUtil with ChangeNotifier {
 
-  FirestoreUtil({
-    required FirebaseFirestore firestore,
-    required FirebaseAuth auth,
-    required this.collection,
-    required this.field})
-  : _firestore = firestore,
-    _auth = auth;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-
-  Future<double?> getByUserField() async {
-    final user = _auth.currentUser;
-    if (user != null) {
-      final doc = await _firestore.collection(collection).doc(user.uid).get();
+  Future<String?> loadUserName(String userId) async {
+    try {
+      final doc = await _firestore
+          .collection(AppConfig.usersCollection)
+          .doc(userId)
+          .get();
       if (doc.exists) {
-        _balance = doc[field];
-        return _balance;
+        return doc[AppConfig.userNameField] as String?;
       }
-      else {
-        return null;
-      }
+    } catch (e) {
+      debugPrint("Error loading user name: $e");
     }
-    else {
-      return null;
-    }
+    return null;
   }
 
 }
