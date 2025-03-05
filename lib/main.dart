@@ -5,6 +5,8 @@ import 'package:hookah/auth/auth_provider/auth_provider.dart';
 import 'package:hookah/auth/auth_screen.dart';
 import 'package:provider/provider.dart';
 
+//TODO: поставить переключение экранов на Navigator с route (?)
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();

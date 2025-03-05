@@ -9,7 +9,7 @@ class ProfileWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
     final user = authProvider.user;
-
+    final name = authProvider.name;
     if(user == null) {
       return Center(child: Text("Пользователя нет."));
     }
@@ -19,7 +19,8 @@ class ProfileWidget extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Добро пожаловать, ${user.email}'),
+            Text('Добро пожаловать, $name'),
+            Text('Ваш email: ${user.email}'),
             SizedBox(height: 20,),
             ElevatedButton(
                 onPressed: () async {
