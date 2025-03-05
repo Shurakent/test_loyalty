@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:hookah/auth/auth_provider/auth_provider.dart';
 
-import '../../auth/auth_screen.dart';
-
 class ProfileWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:hookah/app/home_screen.dart';
 
 class AuthScreen extends StatelessWidget {
   final TextEditingController _emailController = TextEditingController();
