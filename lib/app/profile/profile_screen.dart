@@ -1,43 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:hookah/app/utils/firestore_util.dart';
+import 'package:provider/provider.dart';
+import 'package:hookah/auth/auth_provider/auth_provider.dart';
+
 class ProfileScreen extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text("lol"),
+    final authProvider = Provider.of<AuthProvider>(context);
+    final user = authProvider.user;
+
+    if (user == null){
+      return Center(child: Text('Пользователь не авторизован.'));
+    }
+
+    return Scaffold(
+      appBar: AppBar(title: Text("Профиль"),),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('Добро пожаловать, ${user.email}'),
+            SizedBox(height: 20,),
+            ElevatedButton(
+                onPressed: () async {
+                  await authProvider.signOut();
+                },
+                child: Text('Выйти'))
+          ],
+        ),),
     );
   }
-
+  
 }
-// class ProfileScreen extends StatefulWidget{
-//   @override
-//   _ProfileScreenState createState() =>  _ProfileScreenState();
-// }
-//
-// class _ProfileScreenState extends State<ProfileScreen> {
-//   final FirebaseAuth _auth = FirebaseAuth.instance;
-//   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-//   final TextEditingController _textEditingController = TextEditingController();
-//   String _name = '';
-//   bool _isEditing = false;
-//   FirestoreUtil _firestoreUtil = FirestoreUtil(
-//       firestore: _firestore,
-//       auth: ,
-//       collection: collection,
-//       field: field)
-//
-//   @override
-//   void initState() {
-//     super.initState();
-//     final user
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     // TODO: implement build
-//     throw UnimplementedError();
-//   }
-//
-// }
